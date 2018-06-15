@@ -3,13 +3,21 @@ module.exports = (sequelize, DataTypes) => {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            required: true,
+            required: true
+        },
+        roomId: {
+            type: DataTypes.STRING,
+            required: true
         },
         userId: {
-                type: DataTypes.UUID,
-                required: true
+            type: DataTypes.UUID,
+            required: true
         },
         name: {
+            type: DataTypes.STRING,
+            required: true
+        },
+        message: {
             type: DataTypes.STRING,
             required: true
         },
@@ -19,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         updated_at:  DataTypes.DATE,
         deleted_at: DataTypes.DATE,
-        deleted_by: DataType.STRING
+        deleted_by: DataTypes.STRING
     }, {
         paranoid: true,
         underscored: true
