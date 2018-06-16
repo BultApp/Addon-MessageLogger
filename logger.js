@@ -11,6 +11,25 @@ exports.constructor = (api, helper) => {
 
 exports.onEraseMessage = {
     execute: (data, IErasedMessage) => {
+        IErasedMessage.messageIds.forEach(id => {
+            this.database.messages.update({
+                deleted_by: IErasedMessage.removedBy.userId
+            }, {
+                where: {
+                    id: id
+                }
+            }).then(message => {
+                return this.database.messages.destroy({
+                    where: {
+                        id: id
+                    }
+                });
+            }).then(erased => {
+                if(erased) {
+                    console.log("Message with the id " + id + " has been erased.");
+                }
+            });
+        });
     }
 };
 
